@@ -3,7 +3,7 @@ Challenge 4
 '''
 from xor import *
 
-file1 = open('Set_One\data.txt', 'r')
+file1 = open(r'C:\Users\duckc\Code\Crypto\Set_One\chal4_Data.txt', 'r')
 lines = file1.readlines()
 crypt = []
 for l in lines:

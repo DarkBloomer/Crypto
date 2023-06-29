@@ -115,10 +115,10 @@ def hexToBin(hex):
 Input: string (hex)
 Return: string with highest English score 
 """
-def findKey(hexstr):
+def findKey(bstr):
     message = "" # return value
     topscore = 0.0 # scores strings
-    bstr = prepHexInput(hexstr) 
+    key = ""
     fir_hex_dig = "01234567"
     sec_hex_dig = "0123456789abcdef"
     for i in range(len(fir_hex_dig)):
@@ -129,13 +129,21 @@ def findKey(hexstr):
             if score_result > topscore:
                 topscore = score_result
                 message = xorbin
+                convert = int(hexKey, 2)
+                #Obtain the total number of bytes
+                Total_bytes= (convert.bit_length() +7) // 8
+                #Convert these bits to bytes
+                input_array = convert.to_bytes(Total_bytes, "big")
+                key = input_array.decode()
+                
 
     # return message with highest freq score
-    return message 
+    return message, key 
 
-''' TEST - "Cooking MC's like a pound of bacon"
+'''
 hex = '1b37373331363f78151b7f2b783431333d78397828372d363c78373e783a393b3736'
-mes = findKey(hex)
+bstr = prepHexInput(hex) 
+mes, key = findKey(bstr)
 print(mes)
 '''
 
